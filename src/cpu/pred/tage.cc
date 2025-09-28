@@ -55,6 +55,7 @@
 #include "base/trace.hh"
 #include "debug/Fetch.hh"
 #include "debug/Tage.hh"
+#include "debug/Branch.hh"
 
 namespace gem5
 {
@@ -152,5 +153,14 @@ TAGE::branchPlaceholder(ThreadID tid, Addr pc, bool uncond, void * &bpHistory)
     bpHistory = (void*)(bi);
 }
 
+void
+TAGE::flush() {
+    DPRINTF(Branch, "Flushing TAGE state\n");
+    global_history = 0;
+
+    if (tage) {
+        tage->init();
+    }
+}
 } // namespace branch_prediction
 } // namespace gem5

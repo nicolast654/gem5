@@ -874,7 +874,14 @@ CPU::drainResume()
 void
 CPU::switchOut()
 {
+    // grep_comment: call BP flush here
     DPRINTF(O3CPU, "Switching out\n");
+
+    if (fetch.branchPred) {
+        fetch.branchPred->flush();
+        DPRINTF(O3CPU, "Branch Predictor flushed on context switch\n");
+    }
+
     BaseCPU::switchOut();
 
     activityRec.reset();

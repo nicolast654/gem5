@@ -129,6 +129,7 @@ class BPredUnit : public SimObject
     void squash(const InstSeqNum &squashed_sn, const PCStateBase &corr_target,
                 bool actually_taken, ThreadID tid, bool from_commit=true);
 
+    virtual void flush() {}
   protected:
 
     /** *******************************************************

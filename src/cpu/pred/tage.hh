@@ -113,6 +113,7 @@ class TAGE: public BPredUnit
     void squash(ThreadID tid, void * &bp_history) override;
     void branchPlaceholder(ThreadID tid, Addr pc,
                            bool uncond, void * &bp_history) override;
+    void flush() override;
 };
 
 } // namespace branch_prediction
